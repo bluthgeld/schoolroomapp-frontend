@@ -3,6 +3,7 @@ import Nav from './Nav.js'
 import Profile from './Profile.js'
 import Login from './Login.js'
 import Register from './Register.js'
+import PublicAddress from './PublicAddress.js'
 import {Route} from 'react-router-dom'
 
 
@@ -28,6 +29,7 @@ class App extends Component {
         <Login />
         <Register />
         <Profile />
+        <PublicAddress />
 
       </div>
     </div>

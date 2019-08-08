@@ -20,7 +20,6 @@ class Profile extends Component {
         <StudentCard />
         <EducatorCard />
         <CarerCard />
-
       </div>
     )
   }
