@@ -11,13 +11,23 @@ class App extends Component {
 
   constructor() {
     super()
-
     this.state = {
-      user: "Rob"
+      userprofile: [],
+      username: ""
     }
-
   }
 
+
+  componentDidMount() {
+  fetch('http://localhost:3000/carers/6')
+  .then(res => res.json())
+  .then(userData => {
+    this.setState({
+      userprofile: userData,
+      username: userData.username
+    })
+  })
+}
 
 
   render() {
@@ -26,10 +36,9 @@ class App extends Component {
       <Nav />
       <div className="container-fluid">
 
-        <Login />
-        <Register />
+
         <Profile />
-        <PublicAddress />
+
 
       </div>
     </div>
