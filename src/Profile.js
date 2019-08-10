@@ -5,15 +5,25 @@ import CarerCard from './CarerCard.js'
 
 class Profile extends Component {
 
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
 
     this.state = {
-      stuff: "stuff"
+      userData: []
     }
   }
 
 
+  componentDidMount() {
+  fetch('http://localhost:3000/carers/11')
+  .then(res => res.json())
+  .then(userData => {
+    debugger
+    this.setState({
+      userData: userData,
+    })
+  })
+}
 
   render() {
     return (
@@ -21,14 +31,14 @@ class Profile extends Component {
         <div className="row">
           <div className="col-md-4">
           <div className="card" style={{ width: '20rem'}}>
-          <img src="https://images-na.ssl-images-amazon.com/images/I/51eHSs7gOTL.jpg" alt="Name Here" class="rounded mx-auto d-block rounded-circle" style={{width: '250px', height: '250px'}} />
+          <img src={this.props.userData.picture} alt="Name Here" class="rounded mx-auto d-block rounded-circle" style={{width: '250px', height: '250px'}} />
             <div className="card-body">
-              <h5 className="card-title">Robert H Pancake</h5>
+              <h5 className="card-title">{this.props.userData.first_name} {this.props.userData.last_name}</h5>
             </div>
             <ul className="list-group list-group-flush">
-              <li className="list-group-item">Phone:</li>
-              <li className="list-group-item">Email:</li>
-              <li className="list-group-item">Announcement Preference:</li>
+              <li className="list-group-item">Phone: {this.props.userData.phone}</li>
+              <li className="list-group-item">Email: {this.props.userData.email}</li>
+              <li className="list-group-item">Announcement Preference: {this.props.userData.comm_pref}</li>
             </ul>
             <div className="card-body">
               <a href="#" className="card-link">Edit Profile</a>
@@ -38,7 +48,9 @@ class Profile extends Component {
           </div>
           <div className="col-md-8">
             <h4>My Kids</h4>
-              <StudentCard />
+
+
+
             <h4>Their Educators</h4>
               <EducatorCard />
             <h4>My Family</h4>

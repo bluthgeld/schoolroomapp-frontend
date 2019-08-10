@@ -19,17 +19,7 @@ class App extends Component {
   }
 
 
-  componentDidMount() {
-  fetch('http://localhost:3000/carers/11')
-  .then(res => res.json())
-  .then(userData => {
-    this.setState({
-      userData: userData,
-      userName: userData.username,
-      userId: userData.id
-    })
-  })
-}
+
 
 
   render() {
@@ -45,3 +35,15 @@ class App extends Component {
 }
 
 export default App;
+
+// componentDidMount() {
+// fetch('http://localhost:3000/carers/11')
+// .then(res => res.json())
+// .then(userData => {
+//   this.setState({
+//     userData: userData,
+//     userName: userData.username,
+//     userId: userData.id
+//   })
+// })
+// }
