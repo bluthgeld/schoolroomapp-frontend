@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class PublicAddress extends Component {
+class PublicAddressContainer extends Component {
 
   constructor() {
     super()
@@ -20,4 +20,4 @@ class PublicAddress extends Component {
   }
 }
 
-export default PublicAddress
+export default PublicAddressContainer

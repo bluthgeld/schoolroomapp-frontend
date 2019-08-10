@@ -3,7 +3,7 @@ import Nav from './Nav.js'
 import Profile from './Profile.js'
 import Login from './Login.js'
 import Register from './Register.js'
-import PublicAddress from './PublicAddress.js'
+import PublicAddressContainer from './PublicAddressContainer.js'
 import {Route} from 'react-router-dom'
 
 
@@ -12,19 +12,21 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      userprofile: [],
-      username: ""
+      userData: [],
+      userName: "",
+      userId: 0
     }
   }
 
 
   componentDidMount() {
-  fetch('http://localhost:3000/carers/6')
+  fetch('http://localhost:3000/carers/11')
   .then(res => res.json())
   .then(userData => {
     this.setState({
-      userprofile: userData,
-      username: userData.username
+      userData: userData,
+      userName: userData.username,
+      userId: userData.id
     })
   })
 }
@@ -33,14 +35,8 @@ class App extends Component {
   render() {
     return (
     <div>
-      <Nav />
-      <div className="container-fluid">
-
-
-        <Profile />
-
-
-      </div>
+      <Nav userId={this.state.userId} userName={this.state.userName} />
+      <Profile userData={this.state.userData} />
     </div>
 
     )
