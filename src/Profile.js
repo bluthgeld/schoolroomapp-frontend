@@ -10,7 +10,8 @@ class Profile extends Component {
     super()
 
     this.state = {
-      profileData: [],
+      userId: 0,
+      userData: [],
       studentData: [],
       educatorData: [],
       carerData: [],
@@ -23,8 +24,9 @@ class Profile extends Component {
   fetch('http://localhost:3000/carers/11')
   .then(res => res.json())
   .then(profileData => {
-    this.userData(profileData)
-    this.studentData()
+    this.userData(profileData);
+    this.studentProfile(profileData)
+
   })
 }
 
@@ -39,17 +41,56 @@ class Profile extends Component {
     u.email = user.email
     u.comm_pref = user.comm_pref
     data.push(u)
-    this.setState( {testData: data} )
+    this.setState({
+      userId: user.id,
+      userData: data
+    })
   }
+
+
+  educatorProfile = (data) => {
+
+
+  }
+
+  studentProfile = (data) => {
+    let studentArray = []
+    let carersArray = []
+    data.students.forEach(student => {
+      debugger
+      let h = {}
+      h.id = student.id
+      h.first_name = student.first_name
+      h.last_name = student.last_name
+      h.nickname = student.nickname
+      h.student_number = student.student_number
+      h.picture = student.picture
+      studentArray.push(h)
+      student.student_carers.forEach(carer => {
+        if (carer.carer.id !== this.state.userId) {
+          carersArray.push(carer)
+        }
+      })
+    })
+    this.setState({
+      studentData: studentArray,
+      carerData: carersArray
+    })
+  }
+
+
 
   render() {
     return (
-      <div className="container">
+      <div className="container-fluid">
         <div className="row">
-          <div className="col-md-4">
-test
+          <div className="col-lg-3">
+            {this.state.userData.map(userObj => <ProfileCard
+              userObj={userObj}
+              key={userObj.id}
+            />)}
           </div>
-          <div className="col-md-8">
+          <div className="col-lg-9">
             <h4>Your Kids</h4>
             {this.state.studentData.map(studentObj => <StudentCard
               studentObj={studentObj}
@@ -57,8 +98,13 @@ test
               />)}
             <h4>Their Educators</h4>
               <EducatorCard />
-            <h4>My Family</h4>
-              <CarerCard />
+            <h4>Our Family</h4>
+              <div className="card-columns">
+              {this.state.carerData.map(carerObj => <CarerCard
+                carerObj={carerObj}
+                key={carerObj.carer.id}
+                />)}
+              </div>
           </div>
         </div>
       </div>
@@ -67,9 +113,3 @@ test
 }
 
 export default Profile
-// <ProfileCard profileData={this.state.profileData} />
-
-// this.setState({
-//   profileData: profileData,
-//   studentData: profileData.students
-// })

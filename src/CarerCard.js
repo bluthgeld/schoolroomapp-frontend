@@ -1,18 +1,24 @@
 import React from 'react'
 
 const CarerCard = (props) => {
-  return (
-    <div class="card-columns">
-      <div class="card">
-        <img src="..." class="card-img-top" alt="..." />
-        <div class="card-body">
-          <h5 class="card-title">Carer Card</h5>
-          <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    return (
+
+        <div className="card">
+        <img src={props.carerObj.carer.picture} alt='{props.studentObj.first_name} {props.studentObj.last_name}' className="card-img-top" />
+          <div className="card-body">
+            <h5 className="card-title">{props.carerObj.carer.first_name} {props.carerObj.carer.last_name}</h5>
+          </div>
+          <ul className="list-group list-group-flush">
+            <li className="list-group-item">Role: {props.carerObj.fam}</li>
+            <li className="list-group-item">Phone: {props.carerObj.carer.phone}</li>
+            <li className="list-group-item">Email: {props.carerObj.carer.email}</li>
+          </ul>
+          <div className="card-body">
+            <a href="#" className="card-link">See Schedule</a>
+          </div>
         </div>
-      </div>
-    </div>
-  )
+
+    )
 }
 
 export default CarerCard
