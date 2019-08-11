@@ -1,17 +1,22 @@
 import React from 'react'
 
-const StudentCard = () => {
+const StudentCard = (props) => {
   return (
-    <div class="card-columns">
-      <div class="card">
-        <img src="..." class="card-img-top" alt="..." />
-        <div class="card-body">
-          <h5 class="card-title">Student Card</h5>
-          <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    <div className="card-columns">
+      <div className="card" style={{ width: '18rem'}}>
+      <img src={props.studentObj.picture} alt='{props.studentObj.first_name} {props.studentObj.last_name}' className="card-img-top" />
+        <div className="card-body">
+          <h5 className="card-title">{props.studentObj.first_name} {props.studentObj.last_name}</h5>
+        </div>
+        <ul className="list-group list-group-flush">
+          <li className="list-group-item">Nickname: {props.studentObj.nickname}</li>
+          <li className="list-group-item">Student Number: {props.studentObj.student_number}</li>
+        </ul>
+        <div className="card-body">
+          <a href="#" className="card-link">See Schedule</a>
+        </div>
         </div>
       </div>
-    </div>
   )
 }
 

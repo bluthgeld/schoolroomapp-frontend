@@ -26,7 +26,7 @@ class App extends Component {
     return (
     <div>
       <Nav userId={this.state.userId} userName={this.state.userName} />
-      <Profile userData={this.state.userData} />
+      <Profile />
     </div>
 
     )
