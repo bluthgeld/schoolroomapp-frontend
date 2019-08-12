@@ -25,6 +25,7 @@ class App extends Component {
   render() {
     return (
     <div>
+      <Login />
       <Nav userId={this.state.userId} userName={this.state.userName} />
       <Profile />
     </div>

@@ -3,6 +3,7 @@ import ProfileCard from './ProfileCard.js'
 import StudentCard from './StudentCard.js'
 import EducatorCard from './EducatorCard.js'
 import CarerCard from './CarerCard.js'
+import PublicAddressContainer from './PublicAddressContainer.js'
 
 class Profile extends Component {
 
@@ -14,14 +15,13 @@ class Profile extends Component {
       userData: [],
       studentData: [],
       educatorData: [],
-      carerData: [],
-      testData: []
+      carerData: []
     }
   }
 
 
   componentDidMount() {
-  fetch('http://localhost:3000/carers/21')
+  fetch('http://localhost:3000/carers/1')
   .then(res => res.json())
   .then(profileData => {
     this.userData(profileData);
@@ -124,6 +124,7 @@ class Profile extends Component {
                 key={carerObj.carer.id}
                 />)}
               </div>
+            <PublicAddressContainer />
           </div>
         </div>
       </div>
