@@ -21,7 +21,7 @@ class Profile extends Component {
 
 
   componentDidMount() {
-  fetch('http://localhost:3000/carers/11')
+  fetch('http://localhost:3000/carers/21')
   .then(res => res.json())
   .then(profileData => {
     this.userData(profileData);
@@ -72,13 +72,17 @@ class Profile extends Component {
         }
       })
       student.student_rooms.forEach(room => {
-        let e = {}
-        e.hours = room.hours
-        e.school_year = room.school_year
-        e.room_name = room.room.name
-        e.room_number = room.room.room_number
-        e.educators = room.room.educators
-        educatorArray.push(e)
+        let hours = room.hours
+        let school_year = room.school_year
+        let room_name = room.room.name
+        let room_number = room.room.room_number
+        room.room.educators.forEach(educator => {
+          educator.hours = hours
+          educator.school_year = school_year
+          educator.room_name = room_name
+          educator.room_number = room_number
+          educatorArray.push(educator)
+        })
       })
     })
     this.setState({
@@ -107,7 +111,12 @@ class Profile extends Component {
               key={studentObj.id}
               />)}
             <h4>Their Educators</h4>
-              <EducatorCard />
+              <div className="card-columns">
+              {this.state.educatorData.map(educatorObj => <EducatorCard
+                educatorObj={educatorObj}
+                key={educatorObj.first_name}
+                />)}
+              </div>
             <h4>Our Family</h4>
               <div className="card-columns">
               {this.state.carerData.map(carerObj => <CarerCard
