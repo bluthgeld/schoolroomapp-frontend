@@ -56,8 +56,8 @@ class Profile extends Component {
   studentProfile = (data) => {
     let studentArray = []
     let carersArray = []
+    let educatorArray = []
     data.students.forEach(student => {
-      debugger
       let h = {}
       h.id = student.id
       h.first_name = student.first_name
@@ -71,10 +71,20 @@ class Profile extends Component {
           carersArray.push(carer)
         }
       })
+      student.student_rooms.forEach(room => {
+        let e = {}
+        e.hours = room.hours
+        e.school_year = room.school_year
+        e.room_name = room.room.name
+        e.room_number = room.room.room_number
+        e.educators = room.room.educators
+        educatorArray.push(e)
+      })
     })
     this.setState({
       studentData: studentArray,
-      carerData: carersArray
+      carerData: carersArray,
+      educatorData: educatorArray
     })
   }
 
