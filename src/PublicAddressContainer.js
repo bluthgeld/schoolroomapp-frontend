@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import AnnouncementRow from './AnnouncementRow'
 import AnnouncementContainer from './AnnouncementContainer'
+import CreateAnnouncement from './CreateAnnouncement'
 
 class PublicAddressContainer extends Component {
 
@@ -26,6 +27,8 @@ class PublicAddressContainer extends Component {
     return (
       <div>
         <h2>Public Address System</h2>
+        <h3>Send Announcement</h3>
+        <CreateAnnouncement />
         <h3>Received</h3>
           <table className="table table-hover">
             <thead>
