@@ -25,7 +25,9 @@ class App extends Component {
   render() {
     return (
     <div>
+      <Register />
       <Login />
+
       <Nav userId={this.state.userId} userName={this.state.userName} />
       <Profile />
     </div>
@@ -36,15 +38,3 @@ class App extends Component {
 }
 
 export default App;
-
-// componentDidMount() {
-// fetch('http://localhost:3000/carers/11')
-// .then(res => res.json())
-// .then(userData => {
-//   this.setState({
-//     userData: userData,
-//     userName: userData.username,
-//     userId: userData.id
-//   })
-// })
-// }
