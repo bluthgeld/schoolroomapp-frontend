@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import ReplyCard from './ReplyCard.js'
-import ReplyTo from './ReplyTo.js'
 import AnnouncementCard from './AnnouncementCard.js'
 
 class AnnouncementContainer extends Component {
@@ -10,7 +9,8 @@ class AnnouncementContainer extends Component {
     this.state = {
       announcement: {},
       annId: 0,
-      replies: []
+      replies: [],
+      body: ""
     }
   }
 
@@ -48,10 +48,52 @@ class AnnouncementContainer extends Component {
     })
   }
 
+  handleChange = (event) => {
+    this.setState({
+      body: event.target.value
+    })
+  }
+
+  handleSubmit = (event) => {
+
+    event.preventDefault();
+    fetch('http://localhost:3000/messages' , {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+        body: JSON.stringify({
+        announcement_id: 1,
+        sender_id: 1,
+        body: this.state.body
+      })
+    })
+    .then(response => response.json())
+    .then(message => this.getMessage(message))
+
+  }
+
+  getMessage = (message) => {
+    let r = {}
+    debugger
+    r.picture = message.sender.picture
+    r.last_name = message.sender.last_name
+    r.first_name = message.sender.first_name
+    r.body = message.body
+    r.date = message.created_at
+    r.id = message.id
+    let newReplies = [...this.state.replies, r]
+    this.setState({
+      replies: newReplies
+    })
+    alert("Your Reply Has Been Sent!")
+  }
+
+
   render() {
     return (
       <div>
-
         <AnnouncementCard announcement={this.state.announcement} />
         <h3>Replies</h3>
         {this.state.replies.map(replyObj => <ReplyCard
@@ -59,8 +101,13 @@ class AnnouncementContainer extends Component {
           key={replyObj.id}
           />)}
 
-        <ReplyTo annId={this.state.annId} />
-
+        <form onSubmit={this.handleSubmit}>
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">Reply to this Announcement</label>
+            <textarea class="form-control" value={this.state.body} onChange={this.handleChange} rows="3" />
+          </div>
+          <button type="submit" class="btn btn-primary">Reply</button>
+        </form>
       </div>
     )
   }

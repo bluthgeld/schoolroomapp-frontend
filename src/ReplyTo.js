@@ -18,9 +18,26 @@ class ReplyTo extends Component {
   }
 
   handleSubmit = (event) => {
-    alert(this.state.body);
+
     event.preventDefault();
+    fetch('http://localhost:3000/messages' , {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+        body: JSON.stringify({
+        announcement_id: 1,
+        sender_id: 1,
+        body: this.state.body
+      })
+    })
+    .then(response => response.json())
+    .then(message => this.getMessage(message))
+
   }
+
+
 
   render() {
     return (
