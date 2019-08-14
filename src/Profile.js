@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
+import Nav from './Nav.js'
 import ProfileCard from './ProfileCard.js'
 import StudentCard from './StudentCard.js'
 import EducatorCard from './EducatorCard.js'
 import CarerCard from './CarerCard.js'
-import PublicAddressContainer from './PublicAddressContainer.js'
+import {Route} from 'react-router-dom'
 
 class Profile extends Component {
 
@@ -26,6 +27,7 @@ class Profile extends Component {
   .then(profileData => {
     this.userData(profileData);
     this.studentProfile(profileData)
+    this.props.setCurrentUser(profileData)
 
   })
 }
@@ -96,6 +98,8 @@ class Profile extends Component {
 
   render() {
     return (
+  <div>
+    <Nav userId={this.state.userId} userName={this.state.userName} />
       <div className="container-fluid">
         <div className="row">
           <div className="col-lg-3">
@@ -124,10 +128,10 @@ class Profile extends Component {
                 key={carerObj.carer.id}
                 />)}
               </div>
-            <PublicAddressContainer />
           </div>
         </div>
       </div>
+    </div>
     )
   }
 }
