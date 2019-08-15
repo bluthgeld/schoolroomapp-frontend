@@ -1,6 +1,7 @@
 import React from 'react'
 
-const Nav = () => {
+const Nav = (props) => {
+
   return (
 
     <div className="row">
@@ -16,7 +17,13 @@ const Nav = () => {
                 <a className="nav-link" href="/">Home</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/about">About</a>
+                <a className="nav-link" href={`/profile/${props.userData.username}`}>Profile</a>
+              </li>
+              <li className="nav-item">
+                  <a className="nav-link" href={`/profile/${props.userData.username}/pa`}>Public Address</a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="/profile">Profile</a>
               </li>
             </ul>
           </div>

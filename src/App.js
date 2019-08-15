@@ -7,6 +7,7 @@ import Register from './Register.js'
 import PublicAddressContainer from './PublicAddressContainer'
 import AnnouncementContainer from './AnnouncementContainer'
 import CreateAnnouncement from './CreateAnnouncement'
+import EducatorProfile from './EducatorProfile'
 import {Route} from 'react-router-dom'
 
 
@@ -43,6 +44,7 @@ class App extends Component {
     let data = []
     let u = {}
     u.id = user.id
+    u.username = user.username
     u.first_name = user.first_name
     u.last_name = user.last_name
     u.picture = user.picture
@@ -99,9 +101,11 @@ class App extends Component {
   render() {
     return (
     <div>
+      <Nav userData={this.state.currentUser} />
       <Route exact path="/" component={Home} />
       <Route exact path="/register" component={Register} />
       <Route exact path="/login" component={Login} />
+      <Route exact path="/educator" component={EducatorProfile} />
       <Route exact path="/profile/:username" render={routeProps => <Profile userData={this.state.userData} studentData={this.state.studentData} educatorData={this.state.educatorData} carerData={this.state.carerData} />} />
       <Route exact path="/profile/:username/pa" render={routeProps => <PublicAddressContainer currentUser={this.state.currentUser} />} />
       <Route exact path="/profile/:username/pa/send_announcement" render={routeProps => <CreateAnnouncement userData={this.state.userData} />} />

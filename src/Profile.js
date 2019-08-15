@@ -8,8 +8,8 @@ import {Route} from 'react-router-dom'
 
 class Profile extends Component {
 
-  constructor(props) {
-    super(props)
+  constructor() {
+    super()
 
   }
 
@@ -18,7 +18,6 @@ class Profile extends Component {
   render() {
     return (
   <div>
-    <Nav userId={this.props.userData.id} userName={this.props.userData.username} />
       <div className="container-fluid">
         <div className="row">
           <div className="col-lg-3">
