@@ -4,8 +4,8 @@ import AnnouncementCard from './AnnouncementCard.js'
 
 class AnnouncementContainer extends Component {
 
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       announcement: {},
       annId: 0,
@@ -15,7 +15,7 @@ class AnnouncementContainer extends Component {
   }
 
     componentDidMount() {
-    fetch('http://localhost:3000/announcements/1')
+    fetch(`http://localhost:3000/announcements/${this.props.match.params.id}`)
     .then(res => res.json())
     .then(announcement => {
       this.annHead(announcement)
@@ -25,6 +25,7 @@ class AnnouncementContainer extends Component {
   annHead = (announcement) => {
     let h = {}
     let replies = []
+    h.receiver_id = announcement.receiver_id
     h.picture = announcement.initiator.picture
     h.last_name = announcement.initiator.last_name
     h.first_name = announcement.initiator.first_name
@@ -44,7 +45,6 @@ class AnnouncementContainer extends Component {
     this.setState({
       announcement: h,
       replies: replies,
-      annId: announcement.id
     })
   }
 
@@ -64,8 +64,8 @@ class AnnouncementContainer extends Component {
         "Accept": "application/json"
       },
         body: JSON.stringify({
-        announcement_id: 1,
-        sender_id: 1,
+        announcement_id: this.props.match.params.id,
+        sender_id: this.state.announcement.receiver_id,
         body: this.state.body
       })
     })
@@ -76,7 +76,6 @@ class AnnouncementContainer extends Component {
 
   getMessage = (message) => {
     let r = {}
-    debugger
     r.picture = message.sender.picture
     r.last_name = message.sender.last_name
     r.first_name = message.sender.first_name

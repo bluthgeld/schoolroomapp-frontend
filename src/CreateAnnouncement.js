@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 
 class CreateAnnouncement extends Component {
 
-constructor() {
-  super()
+constructor(props) {
+  super(props)
 
   this.state = {
 
@@ -38,7 +38,7 @@ handleSubmit = (event) => {
       "Accept": "application/json"
     },
       body: JSON.stringify({
-      initiator_id: 1,
+      initiator_id: this.props.userData.id,
       receiver_id: this.state.receiver_id,
       subject: this.state.subject,
       body: this.state.body

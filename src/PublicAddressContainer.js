@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import AnnouncementRow from './AnnouncementRow'
-import AnnouncementContainer from './AnnouncementContainer'
-import CreateAnnouncement from './CreateAnnouncement'
+
 
 class PublicAddressContainer extends Component {
 
@@ -41,12 +40,12 @@ class PublicAddressContainer extends Component {
             <tbody>
               {this.state.announcements.map(announcement => <AnnouncementRow
                 announcement={announcement}
+                user={this.props.currentUser}
                 key={announcement.id}
                 />)}
             </tbody>
           </table>
           <h3>Sent</h3>
-        <AnnouncementContainer />
       </div>
     )
   }
