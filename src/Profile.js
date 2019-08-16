@@ -4,7 +4,7 @@ import ProfileCard from './ProfileCard.js'
 import StudentCard from './StudentCard.js'
 import EducatorCard from './EducatorCard.js'
 import CarerCard from './CarerCard.js'
-import {Route} from 'react-router-dom'
+import {Router, Route} from 'react-router-dom'
 
 class Profile extends Component {
 
@@ -54,4 +54,4 @@ class Profile extends Component {
   }
 }
 
-export default Profile
+export default withRouter(Profile)
