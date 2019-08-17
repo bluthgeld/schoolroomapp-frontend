@@ -1,4 +1,5 @@
 import React from 'react'
+import {Route, Link, withRouter} from 'react-router-dom'
 
 const Nav = (props) => {
 
@@ -17,14 +18,12 @@ const Nav = (props) => {
                 <a className="nav-link" href="/">Home</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href={`/profile/${props.userData.username}`}>Profile</a>
+                <Link to={`/carer/${props.logged_in.username}`} className="nav-link active">Profile</Link>
               </li>
               <li className="nav-item">
-                  <a className="nav-link" href={`/profile/${props.userData.username}/pa`}>Public Address</a>
+                  <Link to={`/carer/${props.logged_in.username}/pa`} className="nav-link">Public Address</Link>
               </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/profile">Profile</a>
-              </li>
+
             </ul>
           </div>
         </nav>
@@ -34,4 +33,4 @@ const Nav = (props) => {
   )
 }
 
-export default Nav
+export default withRouter(Nav)

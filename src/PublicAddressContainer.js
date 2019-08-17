@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import AnnouncementRow from './AnnouncementRow'
-
+import {withRouter} from 'react-router-dom'
 
 class PublicAddressContainer extends Component {
 
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
 
     this.state = {
       announcements: []
@@ -51,4 +51,4 @@ class PublicAddressContainer extends Component {
   }
 }
 
-export default PublicAddressContainer
+export default withRouter(PublicAddressContainer)

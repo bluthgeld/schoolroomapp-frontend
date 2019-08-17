@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import ReplyCard from './ReplyCard.js'
+import {Route, withRouter, Link} from 'react-router-dom'
 import AnnouncementCard from './AnnouncementCard.js'
 
 class AnnouncementContainer extends Component {
@@ -8,7 +9,6 @@ class AnnouncementContainer extends Component {
     super(props)
     this.state = {
       announcement: {},
-      annId: 0,
       replies: [],
       body: ""
     }
@@ -113,4 +113,4 @@ class AnnouncementContainer extends Component {
 
 }
 
-export default AnnouncementContainer
+export default withRouter(AnnouncementContainer)

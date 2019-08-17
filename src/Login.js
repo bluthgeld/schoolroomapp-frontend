@@ -44,7 +44,7 @@ class Login extends Component {
     .then(user => {
       if(user.authenticated){
         this.props.updateCurrentUser(user.user)
-        debugger
+        
       }else{
         alert("you have provided invalid credentials.")
       }
