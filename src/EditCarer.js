@@ -1,20 +1,20 @@
 import React, { Component } from 'react'
 import {withRouter} from 'react-router-dom'
 
-class Register extends Component {
+class EditCarer extends Component {
 
-constructor() {
-  super()
+constructor(props) {
+  super(props)
 
   this.state = {
 
-    username: "",
+    username: props.currentUser.username || "",
     password: "",
-    first_name: "",
-    last_name: "",
-    email: "",
-    phone: "",
-    picture: "",
+    first_name: props.currentUser.first_name || "",
+    last_name: props.currentUser.last_name || "",
+    email: props.currentUser.email || "",
+    phone: props.currentUser.phone || "",
+    picture: props.currentUser.picture || "",
 
   }
 
@@ -40,8 +40,8 @@ whatUp = (user) => {
 handleSubmit = (event) => {
 
   event.preventDefault();
-  fetch('http://localhost:3000/carers' , {
-    method: 'POST',
+  fetch(`http://localhost:3000/carers/${this.props.currentUser.id}` , {
+    method: 'PATCH',
     headers: {
       "Content-Type": "application/json",
       "Accept": "application/json"
@@ -60,8 +60,9 @@ handleSubmit = (event) => {
   })
   .then(response => response.json())
   .then(user => {
+    this.props.updateCurrentUser(user)
     this.whatUp(user)
-    this.props.history.push('/login')
+    this.props.history.push(`/carer/${user.username}`)
     //need to put if an ifelse statement here with popups
   })
 }
@@ -77,7 +78,7 @@ render() {
                 <input type="text" className="form-control" name="username" value={this.state.username} onChange={this.handleChange} placeholder="Username" />
               </div>
               <div className="form-group col-md-6">
-                <label>Password</label>
+                <label>Confirm Existing Password to Make Any Change</label>
                 <input type="password" className="form-control" name="password" value={this.state.password} onChange={this.handleChange} placeholder="Password" />
               </div>
             </div>
@@ -111,4 +112,4 @@ render() {
     }
   }
 
-export default withRouter(Register)
+export default withRouter(EditCarer)

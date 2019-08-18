@@ -1,4 +1,5 @@
 import React from 'react'
+import {Route, Link, withRouter} from 'react-router-dom'
 
 const ProfileCard = (props) => {
   return (
@@ -14,8 +15,7 @@ const ProfileCard = (props) => {
       <li className="list-group-item">Announcement Preference: {props.userObj.comm_pref}</li>
     </ul>
     <div className="card-body">
-      <a href="#" className="card-link">Edit Profile</a>
-      <a href="#" className="card-link">Delete Profile</a>
+      <Link to={`/carer/${props.userObj.username}/edit`} className="card-link">Edit</Link>
     </div>
   </div>
 

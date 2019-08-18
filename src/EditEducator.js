@@ -1,20 +1,20 @@
 import React, { Component } from 'react'
 import {withRouter} from 'react-router-dom'
 
-class Register extends Component {
+class EditEducator extends Component {
 
-constructor() {
-  super()
+constructor(props) {
+  super(props)
 
   this.state = {
 
-    username: "",
+    username: props.currentUser.username || "",
     password: "",
-    first_name: "",
-    last_name: "",
-    email: "",
-    phone: "",
-    picture: "",
+    first_name: props.currentUser.first_name || "",
+    last_name: props.currentUser.last_name || "",
+    email: props.currentUser.email || "",
+    phone: props.currentUser.phone || "",
+    picture: props.currentUser.picture || "",
 
   }
 
@@ -40,14 +40,14 @@ whatUp = (user) => {
 handleSubmit = (event) => {
 
   event.preventDefault();
-  fetch('http://localhost:3000/carers' , {
-    method: 'POST',
+  fetch(`http://localhost:3000/educators/${this.props.currentUser.id}` , {
+    method: 'PATCH',
     headers: {
       "Content-Type": "application/json",
       "Accept": "application/json"
     },
       body: JSON.stringify({
-        carer: {
+        educator: {
           username: this.state.username,
           password: this.state.password,
           first_name: this.state.first_name,
@@ -60,9 +60,11 @@ handleSubmit = (event) => {
   })
   .then(response => response.json())
   .then(user => {
+    this.props.updateCurrentUser(user)
     this.whatUp(user)
-    this.props.history.push('/login')
-    //need to put if an ifelse statement here with popups
+    this.props.history.push(`/educator/${user.username}`)
+
+        //need to put if an ifelse statement here with popups
   })
 }
 
@@ -111,4 +113,4 @@ render() {
     }
   }
 
-export default withRouter(Register)
+export default withRouter(EditEducator)

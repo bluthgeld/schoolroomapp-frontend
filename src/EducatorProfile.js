@@ -20,7 +20,7 @@ class EducatorProfile extends Component {
   fetch(`http://localhost:3000/educators/${this.props.currentUser.id}`)
   .then(res => res.json())
   .then(profileData => {
-
+debugger
     this.setState({
       currentUser: profileData,
       educatorSchedule: profileData.educator_rooms

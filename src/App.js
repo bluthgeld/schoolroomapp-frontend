@@ -1,15 +1,17 @@
 import React, { Component, Fragment } from 'react'
 import Home from './Home.js'
 import Nav from './Nav.js'
-import CarerProfile from './CarerProfile.js'
 import Login from './Login.js'
 import Register from './Register.js'
 import EducatorLogin from './EducatorLogin.js'
 import RegisterEducator from './RegisterEducator.js'
+import CarerProfile from './CarerProfile.js'
+import EditCarer from './EditCarer.js'
+import EditEducator from './EditEducator.js'
+import EducatorProfile from './EducatorProfile.js'
 import PublicAddressContainer from './PublicAddressContainer.js'
 import AnnouncementContainer from './AnnouncementContainer.js'
 import CreateAnnouncement from './CreateAnnouncement.js'
-import EducatorProfile from './EducatorProfile.js'
 import FourOhFour from './FourOhFour.js'
 import {Route, Redirect, withRouter, Switch} from 'react-router-dom'
 
@@ -86,7 +88,9 @@ updateCurrentUser = (user) => {
 
       <Route exact path="/carer/:username/pa" render={routeProps => <PublicAddressContainer currentUser={this.state.user} />} />
       <Route exact path="/carer/:username/pa/:id" render={routeProps => <AnnouncementContainer currentUser={this.state.user} />} />
+      <Route exact path="/carer/:username/edit" render={routeProps => <EditCarer currentUser={this.state.user} updateCurrentUser={this.updateCurrentUser} />} />
       <Route exact path="/educator" component={EducatorProfile} />
+      <Route exact path="/educator/:username/edit" render={routeProps => <EditEducator currentUser={this.state.user} updateCurrentUser={this.updateCurrentUser} />} />
       <Route exact path="/educator/:username/pa/send_announcement" render={routeProps => <CreateAnnouncement currentUser={this.state.user} />} />
        <Route component={FourOhFour} />
     </Switch>
