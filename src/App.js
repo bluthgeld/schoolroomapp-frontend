@@ -4,6 +4,8 @@ import Nav from './Nav.js'
 import CarerProfile from './CarerProfile.js'
 import Login from './Login.js'
 import Register from './Register.js'
+import EducatorLogin from './EducatorLogin.js'
+import RegisterEducator from './RegisterEducator.js'
 import PublicAddressContainer from './PublicAddressContainer.js'
 import AnnouncementContainer from './AnnouncementContainer.js'
 import CreateAnnouncement from './CreateAnnouncement.js'
@@ -44,6 +46,9 @@ updateCurrentUser = (user) => {
     <Switch>
       <Route exact path="/" component={Home} />
       <Route exact path="/register" component={Register} />
+      <Route exact path="/register_educator" component={RegisterEducator} />
+
+
 
         <Route exact path="/login" render={()=> {
           return (this.state.user ?
@@ -61,6 +66,23 @@ updateCurrentUser = (user) => {
           }
         }
       />
+
+    <Route exact path="/educator_login" render={()=> {
+        return (this.state.user ?
+          <Redirect to={`/educator/${this.state.user.username}`} /> :
+          <EducatorLogin updateCurrentUser={this.updateCurrentUser}/>)
+          }
+        }
+      />
+
+
+    <Route exact path="/educator/:username" render={() => {
+      return (this.state.user ?
+        <EducatorProfile currentUser={this.state.user} /> :
+        <Redirect to={"/educator_login"} />)
+        }
+      }
+    />
 
       <Route exact path="/carer/:username/pa" render={routeProps => <PublicAddressContainer currentUser={this.state.user} />} />
       <Route exact path="/carer/:username/pa/:id" render={routeProps => <AnnouncementContainer currentUser={this.state.user} />} />

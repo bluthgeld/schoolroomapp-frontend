@@ -17,7 +17,7 @@ class EducatorProfile extends Component {
   }
 
   componentDidMount() {
-  fetch('http://localhost:3000/educators/4')
+  fetch(`http://localhost:3000/educators/${this.props.currentUser.id}`)
   .then(res => res.json())
   .then(profileData => {
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {withRouter} from 'react-router-dom'
 
-class Register extends Component {
+class RegisterEducator extends Component {
 
 constructor() {
   super()
@@ -40,14 +40,14 @@ whatUp = (user) => {
 handleSubmit = (event) => {
 
   event.preventDefault();
-  fetch('http://localhost:3000/carers' , {
+  fetch('http://localhost:3000/educators' , {
     method: 'POST',
     headers: {
       "Content-Type": "application/json",
       "Accept": "application/json"
     },
       body: JSON.stringify({
-        carer: {
+        educator: {
           username: this.state.username,
           password: this.state.password,
           first_name: this.state.first_name,
@@ -61,9 +61,10 @@ handleSubmit = (event) => {
   .then(response => response.json())
   .then(user => {
     this.whatUp(user)
-    //need to put if an ifelse statement here with popups
+
+        //need to put if an ifelse statement here with popups
   })
-  this.props.history.push('/login')
+  this.props.history.push('/educator_login')
 }
 
 
@@ -111,4 +112,4 @@ render() {
     }
   }
 
-export default withRouter(Register)
+export default withRouter(RegisterEducator)
