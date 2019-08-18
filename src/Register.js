@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {withRouter} from 'react-router-dom'
 
 class Register extends Component {
 
@@ -61,6 +62,7 @@ handleSubmit = (event) => {
   .then(user => {
     this.whatUp(user)
   })
+  this.props.history.push('/login')
 }
 
 
@@ -108,4 +110,4 @@ render() {
     }
   }
 
-export default Register
+export default withRouter(Register)
