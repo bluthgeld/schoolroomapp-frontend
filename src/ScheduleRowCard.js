@@ -1,17 +1,19 @@
 import React from 'react'
-import {Route, Link} from 'react-router-dom'
+import {withRouter, Route, Link} from 'react-router-dom'
 
 
 const ScheduleRowCard = (props) => {
   return (
     <tr>
-      <th scope="col">{props.schedule.room.room_number}</th>
-      <th scope="col">{props.schedule.room.name}</th>
-      <th scope="col">{props.schedule.hours}</th>
-      <th scope="col">{props.schedule.school_year}</th>
+      <th scope="col">{props.schedule.name}</th>
+      <th scope="col">{props.schedule.room.name } {props.schedule.room.room_number}</th>
+      <th scope="col">{props.schedule.description}</th>
+      <th scope="col">{props.schedule.start_hour}</th>
+      <th scope="col">{props.schedule.end_hour}</th>
+      <th scope="col">{props.schedule.academic_year}</th>
 
     </tr>
   )
 }
 
-export default ScheduleRowCard
+export default withRouter(ScheduleRowCard)

@@ -20,6 +20,7 @@ class CarerProfile extends Component {
   fetch(`http://localhost:3000/carers/${this.props.currentUser.id}`)
   .then(res => res.json())
   .then(profileData => {
+
     this.studentData(profileData)
   })
 }
@@ -30,6 +31,7 @@ class CarerProfile extends Component {
     let carersArray = []
     let educatorArray = []
     data.students.forEach(student => {
+
       let h = {}
       h.id = student.id
       h.first_name = student.first_name
@@ -43,14 +45,20 @@ class CarerProfile extends Component {
           carersArray.push(carer)
         }
       })
-      student.student_rooms.forEach(room => {
-        let hours = room.hours
-        let school_year = room.school_year
-        let room_name = room.room.name
-        let room_number = room.room.room_number
-        room.room.educators.forEach(educator => {
-          educator.hours = hours
-          educator.school_year = school_year
+      student.sections.forEach(section => {
+        let section_name = section.name
+        let start_hour = section.start_hour
+        let end_hour = section.end_hour
+        let description = section.description
+        let academic_year = section.academic_year
+        let room_name = section.room.name
+        let room_number = section.room.room_number
+        section.educators.forEach(educator => {
+          educator.section_name = section_name
+          educator.start_hour = start_hour
+          educator.end_hour = end_hour
+          educator.description = description
+          educator.academic_year = academic_year
           educator.room_name = room_name
           educator.room_number = room_number
           educatorArray.push(educator)
@@ -62,8 +70,8 @@ class CarerProfile extends Component {
       carerData: carersArray,
       educatorData: educatorArray
     })
+    debugger
   }
-
 
   render() {
     return (

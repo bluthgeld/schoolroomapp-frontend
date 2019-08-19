@@ -7,10 +7,9 @@ import {Route} from 'react-router-dom'
 
 class EducatorProfile extends Component {
 
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
-      currentUser: {},
       educatorSchedule: [],
       educatorData: []
     }
@@ -20,20 +19,20 @@ class EducatorProfile extends Component {
   fetch(`http://localhost:3000/educators/${this.props.currentUser.id}`)
   .then(res => res.json())
   .then(profileData => {
-debugger
+
     this.setState({
-      currentUser: profileData,
-      educatorSchedule: profileData.educator_rooms
+      educatorSchedule: profileData.sections
     })
     this.educators(this.state.educatorSchedule)
   })
 }
 
 educators = (data) => {
+  debugger
   let educatorArray = []
-  data.forEach(room => {
-    room.room.educators.forEach(educator => {
-      if (educator.id !== this.state.currentUser.id) {
+  data.forEach(section => {
+      section.educators.forEach(educator => {
+      if (educator.id !== this.props.currentUser.id) {
         educatorArray.push(educator)
       }
     })
@@ -51,17 +50,19 @@ educators = (data) => {
        <div className="container-fluid">
         <div className="row">
           <div className="col-lg-3">
-           <ProfileCard userObj={this.state.currentUser} />
+           <ProfileCard userObj={this.props.currentUser} />
           </div>
           <div className="col-lg-9">
            <h4>Schedule</h4>
            <table className="table table-hover">
              <thead>
                <tr>
-                 <th scope="col">Room #</th>
-                 <th scope="col">Room Name</th>
-                 <th scope="col">Hours</th>
-                 <th scope="col">School Year</th>
+                <th scope="col">Class Name</th>
+                <th scope="col">Room</th>
+                <th scope="col">Description</th>
+                <th scope="col">Start Time</th>
+                <th scope="col">End Time</th>
+                <th scope="col">Academic Year</th>
                </tr>
              </thead>
              <tbody>

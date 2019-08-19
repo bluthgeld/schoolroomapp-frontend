@@ -9,10 +9,11 @@ const EducatorCard = (props) => {
       </div>
       <ul className="list-group list-group-flush">
         <li className="list-group-item">{props.educatorObj.educator_type}</li>
-        <li className="list-group-item">Class Name: {props.educatorObj.room_name}</li>
-        <li className="list-group-item">Room Number: {props.educatorObj.room_number}</li>
-        <li className="list-group-item">Class Hours: {props.educatorObj.hours}</li>
-        <li className="list-group-item">Academic Year: {props.educatorObj.school_year}</li>
+        <li className="list-group-item">Class: {props.educatorObj.section_name}</li>
+        <li className="list-group-item">{props.educatorObj.description}</li>
+        <li className="list-group-item">Room: {props.educatorObj.room_name} {props.educatorObj.room_number}</li>
+        <li className="list-group-item">Class Hours: {props.educatorObj.start_hour} to {props.educatorObj.end_hour}</li>
+        <li className="list-group-item">Academic Year: {props.educatorObj.academic_year}</li>
       </ul>
       <div className="card-body">
         <a href="#" className="card-link">See Class Roster</a>

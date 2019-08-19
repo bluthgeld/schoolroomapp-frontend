@@ -8,16 +8,19 @@ class PublicAddressContainer extends Component {
     super(props)
 
     this.state = {
-      announcements: []
+      sent: [],
+      received: []
     }
   }
 
   componentDidMount() {
-  fetch('http://localhost:3000/announcements')
+  fetch(`http://localhost:3000/ann/${this.props.currentUser.id}`)
   .then(res => res.json())
   .then(announcements => {
+  
     this.setState({
-      announcements: announcements
+      sent: announcements.initiator_relationships,
+      received: announcements.receiver_relationships
     })
   })
 }
@@ -26,26 +29,62 @@ class PublicAddressContainer extends Component {
     return (
       <div>
         <h2>Public Address System</h2>
-        <h3>Received</h3>
-          <table className="table table-hover">
-            <thead>
-              <tr>
-                <th scope="col">Priority</th>
-                <th scope="col">Sender</th>
-                <th scope="col">Subject</th>
-                <th scope="col">Date</th>
-                <th scope="col"># Replies</th>
-              </tr>
-            </thead>
-            <tbody>
-              {this.state.announcements.map(announcement => <AnnouncementRow
-                announcement={announcement}
-                user={this.props.currentUser}
-                key={announcement.id}
-                />)}
-            </tbody>
-          </table>
-          <h3>Sent</h3>
+           <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="received-tab" data-toggle="tab" href="#received" role="tab" aria-controls="Received" aria-selected="false">Received</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="sent-tab" data-toggle="tab" href="#sent" role="tab" aria-controls="Sent" aria-selected="false">Sent</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="compose-tab" data-toggle="tab" href="#compose" role="tab" aria-controls="Contact" aria-selected="false">Compose</a>
+            </li>
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane show active" id="received" role="tabpanel" aria-labelledby="received-tab">
+
+              <table className="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">Priority</th>
+                    <th scope="col">Sender</th>
+                    <th scope="col">Subject</th>
+                    <th scope="col">Date</th>
+                    <th scope="col"># Replies</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {this.state.received.map(announcement => <AnnouncementRow
+                    announcement={announcement}
+                    user={this.props.currentUser}
+                    key={announcement.id}
+                    />)}
+                </tbody>
+              </table>
+
+            </div>
+            <div class="tab-pane" id="sent" role="tabpanel" aria-labelledby="sent-tab">
+              <table className="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">Priority</th>
+                    <th scope="col">Sender</th>
+                    <th scope="col">Subject</th>
+                    <th scope="col">Date</th>
+                    <th scope="col"># Replies</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {this.state.sent.map(announcement => <AnnouncementRow
+                    announcement={announcement}
+                    user={this.props.currentUser}
+                    key={announcement.id}
+                    />)}
+                </tbody>
+              </table>
+            </div>
+            <div class="tab-pane" id="compose" role="tabpanel" aria-labelledby="compose-tab">...</div>
+          </div>
       </div>
     )
   }
