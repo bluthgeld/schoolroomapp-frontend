@@ -15,9 +15,9 @@ class SectionContainer extends Component {
   fetch(`http://localhost:3000/sections/1`)
   .then(res => res.json())
   .then(sections => {
-    
+    debugger
     this.setState({
-      classroom: sections.initiator_relationships,
+      classroom: sections,
     })
   })
 }
@@ -25,6 +25,8 @@ class SectionContainer extends Component {
   render() {
     return (
       <div>
+
+      asdfas
 
       </div>
     )

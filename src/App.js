@@ -13,6 +13,7 @@ import PublicAddressContainer from './PublicAddressContainer.js'
 import AnnouncementContainer from './AnnouncementContainer.js'
 import CreateAnnouncement from './CreateAnnouncement.js'
 import FourOhFour from './FourOhFour.js'
+import SectionContainer from './SectionContainer.js'
 import {Route, Redirect, withRouter, Switch} from 'react-router-dom'
 
 
@@ -92,7 +93,9 @@ updateCurrentUser = (user) => {
       <Route exact path="/educator" component={EducatorProfile} />
       <Route exact path="/educator/:username/edit" render={routeProps => <EditEducator currentUser={this.state.user} updateCurrentUser={this.updateCurrentUser} />} />
       <Route exact path="/educator/:username/pa/send_announcement" render={routeProps => <CreateAnnouncement currentUser={this.state.user} />} />
-       <Route component={FourOhFour} />
+      <Route exact path="/section/:id" render={routeProps => <SectionContainer currentUser={this.state.user} /> } /> 
+
+      <Route component={FourOhFour} />
     </Switch>
     </Fragment>
     )
