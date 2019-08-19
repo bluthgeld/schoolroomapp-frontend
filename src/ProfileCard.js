@@ -15,7 +15,7 @@ const ProfileCard = (props) => {
       <li className="list-group-item">Announcement Preference: {props.userObj.comm_pref}</li>
     </ul>
     <div className="card-body">
-      <Link to={`/carer/${props.userObj.username}/edit`} className="card-link">Edit</Link>
+      <Link to={`/educator/${props.userObj.username}/edit`} className="card-link">Edit</Link>
     </div>
   </div>
 
