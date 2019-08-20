@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom'
 
 class CreateAnnouncement extends Component {
 
@@ -38,7 +39,7 @@ handleSubmit = (event) => {
       "Accept": "application/json"
     },
       body: JSON.stringify({
-      initiator_id: this.props.userData.id,
+      initiator_id: this.props.currentUser.id,
       receiver_id: this.state.receiver_id,
       subject: this.state.subject,
       body: this.state.body
@@ -55,7 +56,14 @@ render() {
     <form onSubmit={this.handleSubmit}>
       <div class="form-group">
         <label for="annTo">To:</label>
-        <input type="number" className="form-control" name="receiver_id" value={this.state.receiver_id} onChange={this.handleChange} placeholder="To:" />
+      </div>
+      <div className="form-group">
+        <select className="form-control" name="receiver_id" value={this.state.receiver_id} onChange={this.handleChange}>
+          <option value="1">Grapefruit</option>
+          <option value="2">Lime</option>
+          <option value="3">Coconut</option>
+          <option value="mango">Mango</option>
+        </select>
       </div>
       <div class="form-group">
         <label for="annSubject">Subject:</label>
@@ -72,4 +80,7 @@ render() {
 
 }
 
-export default CreateAnnouncement
+export default withRouter(CreateAnnouncement)
+
+
+// <input type="number" className="form-control" name="receiver_id" value={this.state.receiver_id} onChange={this.handleChange} placeholder="To:" />

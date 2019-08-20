@@ -111,7 +111,6 @@ updateCurrentUser = (user) => {
       <Route exact path="/educator/:username/edit" render={routeProps => <EditEducator currentUser={this.state.user} updateCurrentUser={this.updateCurrentUser} />} />
       <Route exact path="/educator/:username/pa" render={routeProps => <PublicAddressContainer currentUser={this.state.user} />} />
       <Route exact path="/educator/:username/pa/:id" render={routeProps => <AnnouncementContainer currentUser={this.state.user} />} />
-      <Route exact path="/educator/:username/pa/send_announcement" render={routeProps => <CreateAnnouncement currentUser={this.state.user} />} />
       <Route exact path="/section/:id" render={routeProps => <SectionContainer currentUser={this.state.user} /> } />
       <Route exact path="/student/:id" render={routeProps => <StudentContainer currentUser={this.state.user} /> } />
 

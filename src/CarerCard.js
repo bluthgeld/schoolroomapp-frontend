@@ -13,9 +13,6 @@ const CarerCard = (props) => {
             <li className="list-group-item">Phone: {props.carerObj.carer.phone}</li>
             <li className="list-group-item">Email: {props.carerObj.carer.email}</li>
           </ul>
-          <div className="card-body">
-            <a href="#" className="card-link">See Schedule</a>
-          </div>
         </div>
 
     )

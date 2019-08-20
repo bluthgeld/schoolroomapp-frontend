@@ -3,7 +3,7 @@ import Nav from './Nav.js'
 import ProfileCard from './ProfileCard.js'
 import EducatorCard from './EducatorCard.js'
 import ScheduleRowCard from './ScheduleRowCard.js'
-import {Route} from 'react-router-dom'
+import {withRouter, Route} from 'react-router-dom'
 
 class EducatorProfile extends Component {
 
@@ -89,4 +89,4 @@ educators = (data) => {
   }
 }
 
-export default EducatorProfile
+export default withRouter(EducatorProfile)

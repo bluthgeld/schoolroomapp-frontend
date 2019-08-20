@@ -15,9 +15,6 @@ const EducatorCard = (props) => {
         <li className="list-group-item">Class Hours: {props.educatorObj.start_hour} to {props.educatorObj.end_hour}</li>
         <li className="list-group-item">Academic Year: {props.educatorObj.academic_year}</li>
       </ul>
-      <div className="card-body">
-        <a href="#" className="card-link">See Class Roster</a>
-      </div>
     </div>
   )
 }

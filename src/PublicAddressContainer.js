@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import SentAnnouncementRow from './SentAnnouncementRow.js'
 import ReceivedAnnouncementRow from './ReceivedAnnouncementRow.js'
+import CreateAnnouncement from './CreateAnnouncement.js'
 import {withRouter} from 'react-router-dom'
 
 class PublicAddressContainer extends Component {
@@ -15,7 +16,8 @@ class PublicAddressContainer extends Component {
   }
 
   componentDidMount() {
-  fetch(`http://localhost:3000/ann/4`)
+    console.log(this.props)
+  fetch(`http://localhost:3000/ann/${this.props.currentUser.id}`)
   .then(res => res.json())
   .then(announcements => {
   debugger
@@ -27,6 +29,15 @@ class PublicAddressContainer extends Component {
 }
 
   render() {
+
+    let compose;
+
+    if (this.props.currentUser.user_type === "educator") {
+      compose = <CreateAnnouncement currentUser={this.props.currentUser} />;
+      } else {
+        compose = <h5>You Do Not Have Access to this Tool</h5>;
+      }
+
     return (
       <div>
         <h2>Public Address System</h2>
@@ -84,7 +95,11 @@ class PublicAddressContainer extends Component {
                 </tbody>
               </table>
             </div>
-            <div class="tab-pane" id="compose" role="tabpanel" aria-labelledby="compose-tab">...</div>
+            <div class="tab-pane" id="compose" role="tabpanel" aria-labelledby="compose-tab">
+
+              {compose}
+
+            </div>
           </div>
       </div>
     )

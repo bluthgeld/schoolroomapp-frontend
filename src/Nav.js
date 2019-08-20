@@ -23,10 +23,10 @@ const Nav = (props) => {
           <div className="collapse navbar-collapse" id="navbarColor01">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item">
-                <Link to={`/educator/${props.logged_in.username}`} className="nav-link active">Profile</Link>
+                <Link to={`/${props.logged_in.user_type}/${props.logged_in.username}`} className="nav-link active">Profile</Link>
               </li>
               <li className="nav-item">
-                  <Link to={`/educator/${props.logged_in.username}/pa`} className="nav-link">Public Address</Link>
+                  <Link to={`/${props.logged_in.user_type}/${props.logged_in.username}/pa`} className="nav-link">Public Address</Link>
               </li>
               <li className="nav-item">
                 <button type="button" class="btn btn-primary" onClick={handleOnLogout} >Logout</button>

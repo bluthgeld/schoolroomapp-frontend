@@ -12,10 +12,9 @@ const ProfileCard = (props) => {
     <ul className="list-group list-group-flush">
       <li className="list-group-item">Phone: {props.userObj.phone}</li>
       <li className="list-group-item">Email: {props.userObj.email}</li>
-      <li className="list-group-item">Announcement Preference: {props.userObj.comm_pref}</li>
     </ul>
     <div className="card-body">
-      <Link to={`/educator/${props.userObj.username}/edit`} className="card-link">Edit</Link>
+      <Link to={`/${props.userObj.user_type}/${props.userObj.username}/edit`} className="card-link">Edit</Link>
     </div>
   </div>
 
