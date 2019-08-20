@@ -65,7 +65,7 @@ class AnnouncementContainer extends Component {
       },
         body: JSON.stringify({
         announcement_id: this.props.match.params.id,
-        sender_id: this.state.announcement.receiver_id,
+        sender_id: this.props.currentUser.id,
         body: this.state.body
       })
     })

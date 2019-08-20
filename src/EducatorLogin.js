@@ -44,7 +44,7 @@ class EducatorLogin extends Component {
     .then(user => {
       if(user.authenticated){
         this.props.updateCurrentUser(user.user)
-
+        localStorage.setItem("jwt", user.token)
       }else{
         debugger
         alert("you have provided invalid credentials.")

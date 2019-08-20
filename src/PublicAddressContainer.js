@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import AnnouncementRow from './AnnouncementRow'
+import SentAnnouncementRow from './SentAnnouncementRow.js'
+import ReceivedAnnouncementRow from './ReceivedAnnouncementRow.js'
 import {withRouter} from 'react-router-dom'
 
 class PublicAddressContainer extends Component {
@@ -14,10 +15,10 @@ class PublicAddressContainer extends Component {
   }
 
   componentDidMount() {
-  fetch(`http://localhost:3000/ann/${this.props.currentUser.id}`)
+  fetch(`http://localhost:3000/ann/4`)
   .then(res => res.json())
   .then(announcements => {
-  
+  debugger
     this.setState({
       sent: announcements.initiator_relationships,
       received: announcements.receiver_relationships
@@ -54,7 +55,7 @@ class PublicAddressContainer extends Component {
                   </tr>
                 </thead>
                 <tbody>
-                  {this.state.received.map(announcement => <AnnouncementRow
+                  {this.state.received.map(announcement => <ReceivedAnnouncementRow
                     announcement={announcement}
                     user={this.props.currentUser}
                     key={announcement.id}
@@ -68,14 +69,14 @@ class PublicAddressContainer extends Component {
                 <thead>
                   <tr>
                     <th scope="col">Priority</th>
-                    <th scope="col">Sender</th>
+                    <th scope="col">Recipient</th>
                     <th scope="col">Subject</th>
                     <th scope="col">Date</th>
                     <th scope="col"># Replies</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {this.state.sent.map(announcement => <AnnouncementRow
+                  {this.state.sent.map(announcement => <SentAnnouncementRow
                     announcement={announcement}
                     user={this.props.currentUser}
                     key={announcement.id}

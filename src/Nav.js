@@ -3,6 +3,14 @@ import {Route, Link, withRouter} from 'react-router-dom'
 
 const Nav = (props) => {
 
+  let handleOnLogout = () => {
+    localStorage.removeItem("jwt")
+    props.updateCurrentUser(null)
+    props.history.push('/login')
+  }
+
+
+
   return (
 
     <div className="row">
@@ -14,18 +22,19 @@ const Nav = (props) => {
             </button>
           <div className="collapse navbar-collapse" id="navbarColor01">
             <ul className="navbar-nav mr-auto">
-              <li className="nav-item active">
-                <a className="nav-link" href="/">Home</a>
+              <li className="nav-item">
+                <Link to={`/educator/${props.logged_in.username}`} className="nav-link active">Profile</Link>
               </li>
               <li className="nav-item">
-                <Link to={`/carer/${props.logged_in.username}`} className="nav-link active">Profile</Link>
+                  <Link to={`/educator/${props.logged_in.username}/pa`} className="nav-link">Public Address</Link>
               </li>
               <li className="nav-item">
-                  <Link to={`/carer/${props.logged_in.username}/pa`} className="nav-link">Public Address</Link>
+                <button type="button" class="btn btn-primary" onClick={handleOnLogout} >Logout</button>
               </li>
-
             </ul>
           </div>
+
+
         </nav>
       </div>
     </div>

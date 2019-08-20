@@ -30,6 +30,22 @@ class App extends Component {
   }
 
 
+  componentDidMount(){
+    //check to see if there is a jwt?
+    //if there is, fetch to get the user asnd update the user state
+    let token = localStorage.getItem("jwt")
+    if(token){
+      fetch("http://localhost:3000/users", {
+        headers: {"Authentication": `Bearer ${token}`}
+      })
+      .then(res => res.json())
+      .then(user => {
+
+      	this.updateCurrentUser(user)
+      })
+    }
+  }
+
 
 updateCurrentUser = (user) => {
   this.setState({user})
@@ -93,6 +109,8 @@ updateCurrentUser = (user) => {
       <Route exact path="/carer/:username/edit" render={routeProps => <EditCarer currentUser={this.state.user} updateCurrentUser={this.updateCurrentUser} />} />
       <Route exact path="/educator" component={EducatorProfile} />
       <Route exact path="/educator/:username/edit" render={routeProps => <EditEducator currentUser={this.state.user} updateCurrentUser={this.updateCurrentUser} />} />
+      <Route exact path="/educator/:username/pa" render={routeProps => <PublicAddressContainer currentUser={this.state.user} />} />
+      <Route exact path="/educator/:username/pa/:id" render={routeProps => <AnnouncementContainer currentUser={this.state.user} />} />
       <Route exact path="/educator/:username/pa/send_announcement" render={routeProps => <CreateAnnouncement currentUser={this.state.user} />} />
       <Route exact path="/section/:id" render={routeProps => <SectionContainer currentUser={this.state.user} /> } />
       <Route exact path="/student/:id" render={routeProps => <StudentContainer currentUser={this.state.user} /> } />
