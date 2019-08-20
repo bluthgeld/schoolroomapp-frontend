@@ -2,7 +2,7 @@ import React from 'react'
 
 const StudentCard = (props) => {
   return (
-    <div className="card-columns">
+
       <div className="card" style={{ width: '18rem'}}>
       <img src={props.studentObj.picture} alt='{props.studentObj.first_name} {props.studentObj.last_name}' className="card-img-top" />
         <div className="card-body">
@@ -16,7 +16,7 @@ const StudentCard = (props) => {
           <a href="#" className="card-link">See Schedule</a>
         </div>
         </div>
-      </div>
+
   )
 }
 

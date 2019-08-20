@@ -70,7 +70,7 @@ class CarerProfile extends Component {
       carerData: carersArray,
       educatorData: educatorArray
     })
-    debugger
+    
   }
 
   render() {
