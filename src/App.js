@@ -57,12 +57,7 @@ updateCurrentUser = (user) => {
     return (
     <Fragment>
 
-      {this.state.user ? (
-          <Nav logged_in={this.state.user} updateCurrentUser={this.updateCurrentUser} />
-      ) : (
-        <div></div>
-      )
-    }
+
     <Switch>
       <Route exact path="/" component={Home} />
       <Route exact path="/register" component={Register} />
@@ -122,3 +117,11 @@ updateCurrentUser = (user) => {
 }
 
 export default withRouter(App);
+
+// 
+// {this.state.user ? (
+//     <Nav logged_in={this.state.user} updateCurrentUser={this.updateCurrentUser} />
+// ) : (
+//   <div></div>
+// )
+// }
