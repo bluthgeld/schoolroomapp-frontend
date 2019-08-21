@@ -20,7 +20,6 @@ class PublicAddressContainer extends Component {
   fetch(`http://localhost:3000/ann/${this.props.currentUser.id}`)
   .then(res => res.json())
   .then(announcements => {
-  debugger
     this.setState({
       sent: announcements.initiator_relationships,
       received: announcements.receiver_relationships

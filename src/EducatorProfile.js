@@ -28,7 +28,7 @@ class EducatorProfile extends Component {
 }
 
 educators = (data) => {
-  debugger
+  
   let educatorArray = []
   data.forEach(section => {
       section.educators.forEach(educator => {

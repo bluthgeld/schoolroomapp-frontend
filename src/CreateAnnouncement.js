@@ -7,15 +7,40 @@ constructor(props) {
   super(props)
 
   this.state = {
-
-    receiver_id: "",
+    dropdown: [],
+    student_id: "",
     subject: "",
     body: ""
 
   }
-
 }
 
+
+componentDidMount() {
+fetch(`http://localhost:3000/ed_students/${this.props.currentUser.id}`)
+.then(res => res.json())
+.then(students => {
+  console.log(students)
+  this.studentList(students)
+})
+}
+
+studentList = (data) => {
+  let dropdown = []
+  data.sections.forEach(section => {
+    section.students.forEach(student => {
+      let s = {}
+      s.name = section.name
+      s.id = student.id
+      s.first_name = student.first_name
+      s.last_name = student.last_name
+      dropdown.push(s)
+    })
+  })
+  this.setState({
+    dropdown: dropdown,
+  })
+}
 
 
 handleChange = (event) => {
@@ -40,7 +65,7 @@ handleSubmit = (event) => {
     },
       body: JSON.stringify({
       initiator_id: this.props.currentUser.id,
-      receiver_id: this.state.receiver_id,
+      student_id: this.state.student_id,
       subject: this.state.subject,
       body: this.state.body
     })
@@ -58,11 +83,9 @@ render() {
         <label for="annTo">To:</label>
       </div>
       <div className="form-group">
-        <select className="form-control" name="receiver_id" value={this.state.receiver_id} onChange={this.handleChange}>
-          <option value="1">Grapefruit</option>
-          <option value="2">Lime</option>
-          <option value="3">Coconut</option>
-          <option value="mango">Mango</option>
+        <select className="form-control" name="student_id" value={this.state.student_id} onChange={this.handleChange}>
+          <option selected value="">Select a Student</option>
+          {this.state.dropdown.map(line => <option value={line.id}>{line.first_name} {line.last_name} - {line.name}</option>)}
         </select>
       </div>
       <div class="form-group">
