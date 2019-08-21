@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 
+
 class CreateAnnouncement extends Component {
 
 constructor(props) {
@@ -41,6 +42,7 @@ studentList = (data) => {
     dropdown: dropdown,
   })
 }
+
 
 
 handleChange = (event) => {
@@ -96,6 +98,7 @@ render() {
         <label>Announcement</label>
         <textarea className="form-control" name="body" value={this.state.body} onChange={this.handleChange} rows="3" />
       </div>
+
       <button type="submit" className="btn btn-primary">Post</button>
     </form>
   )
@@ -104,6 +107,10 @@ render() {
 }
 
 export default withRouter(CreateAnnouncement)
+
+// <ReactQuill value={this.state.body} onChange={this.handleChangeBody} name="body" rows="10" />
+
+//
 
 
 // <input type="number" className="form-control" name="receiver_id" value={this.state.receiver_id} onChange={this.handleChange} placeholder="To:" />
