@@ -51,7 +51,7 @@ class SectionContainer extends Component {
         />)}
       </div>
       <h3 className="mt-4 mb-3">The Students</h3>
-      <div className="card-deck">
+      <div className="card-columns">
       {this.state.students.map(studentObj => <StudentCard
         studentObj={studentObj}
         key={studentObj.id}
