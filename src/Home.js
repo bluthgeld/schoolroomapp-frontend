@@ -6,12 +6,15 @@ const Home = () => {
       <div className="bg_schoolroom">
 
 
-        <div class="jumbotron fixed-bottom w-75 mx-auto">
-          <h1 class="display-4">Hello, world!</h1>
-          <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-          <hr class="my-4" />
-            <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-            <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+        <div className="jumbotron fixed-bottom w-75 mx-auto">
+          <h1 className="display-4">Welcome to Schoolroom!</h1>
+          <p className="lead">A simple tool to help Teachers communicate with Parents and Caregivers.</p>
+          <p className="lead">Including Web and Mobile Event Notifications</p>
+          <hr className="my-4" />
+            <p>To use this service, you must Register for an Account and be Confirmed by your child's School.</p>
+            <a className="btn btn-primary btn-lg" href="/register" role="button">Register Now!</a>
+          <hr className="my-4" />
+          <p className="lead">Have a Username/Password? <a href="/login">Login Here</a></p>
           </div>
 
 

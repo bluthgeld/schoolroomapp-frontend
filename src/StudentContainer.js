@@ -4,6 +4,7 @@ import EducatorCard from './EducatorCard.js'
 import StudentCard from './StudentCard.js'
 import ScheduleRowCard from './ScheduleRowCard.js'
 import CarerCard from './CarerCard.js'
+import CarerCardToo from './CarerCardToo.js'
 
 class StudentContainer extends Component {
 
@@ -19,10 +20,10 @@ class StudentContainer extends Component {
   }
 
   componentDidMount() {
-  fetch(`http://localhost:3000/students/1`)
+  fetch(`http://localhost:3000/students/${this.props.match.params.id}`)
   .then(res => res.json())
   .then(student => {
-    debugger
+    this.getEducators(student)
     this.setState({
       student: student,
       sections: student.sections,
@@ -31,11 +32,23 @@ class StudentContainer extends Component {
   })
 }
 
+getEducators = (student) => {
+  let e = []
+  student.sections.forEach(section => {
+    section.educators.forEach(educator => {
+      e.push(educator)
+    })
+  })
+  this.setState({
+    educators: e,
+  })
+}
+
   render() {
     return (
-      <Fragment>
 
-        <div className="card w-50">
+      <div className="container-fluid px-4 py-4">
+        <div className="card w-50 mx-auto">
           <div className="row no-gutters">
             <div className="col-md-4">
               <img src={this.state.student.picture} className="card-img" style={{width: "200px"}} alt="..." />
@@ -51,8 +64,8 @@ class StudentContainer extends Component {
           </div>
         </div>
 
-
-      <h4>Schedule</h4>
+      <div className="w-75 mx-auto">
+      <h4 className="mt-4 mb-3" >Schedule</h4>
       <table className="table table-hover">
         <thead>
           <tr>
@@ -73,13 +86,23 @@ class StudentContainer extends Component {
       </table>
 
 
-      <h3>Educators</h3>
+      <h3 className="mt-4 mb-3">Educators</h3>
+        <div className="card-columns">
+        {this.state.educators.map(educatorObj => <EducatorCard
+          educatorObj={educatorObj}
+          key={educatorObj.first_name}
+          />)}
+        </div>
 
-
-      <h3>Family</h3>
-
-
-      </Fragment>
+      <h3 className="mt-4 mb-3">Family</h3>
+      <div className="card-columns">
+        {this.state.carers.map(carerObj => <CarerCardToo
+          carerObj={carerObj}
+          key={carerObj.id}
+          />)}
+      </div>
+      </div>
+      </div>
 
     )
   }

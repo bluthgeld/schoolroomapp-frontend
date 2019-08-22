@@ -56,17 +56,40 @@ class EducatorLogin extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleLoginSubmit}>
-        <div class="form-group">
-          <label for="exampleInputEmail1">Username</label>
-          <input type="text" name="username" className="form-control" value={this.state.username} onChange={this.handleChange} placeholder="Username" />
+
+
+      <div className="container w-50 mx-auto px-4 py-4">
+      <div className="w-25 mx-auto px-4 py-4">
+
+        <img src={require('./university.png')} style={{ width: "200px"}}/>
+
+      </div>
+
+
+
+      <div class="card w-75 mx-auto mt-5">
+        <h2 className="mx-auto mb-3 mt-3">Login as an Educator</h2>
+        <div class="card-body">
+
+          <form onSubmit={this.handleLoginSubmit}>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Username</label>
+              <input type="text" name="username" className="form-control" value={this.state.username} onChange={this.handleChange} placeholder="Username" />
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Password</label>
+              <input type="password" name="password" className="form-control" value={this.state.password} onChange={this.handleChange} placeholder="Password" />
+            </div>
+            <button type="submit" className="btn btn-primary">Submit</button>
+          </form>
+
+
         </div>
-        <div class="form-group">
-          <label for="exampleInputPassword1">Password</label>
-          <input type="password" name="password" className="form-control" value={this.state.password} onChange={this.handleChange} placeholder="Password" />
-        </div>
-        <button type="submit" className="btn btn-primary">Submit</button>
-      </form>
+      </div>
+      </div>
+
+
+
     )
   }
 

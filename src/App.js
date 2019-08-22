@@ -56,6 +56,16 @@ updateCurrentUser = (user) => {
   render() {
     return (
     <Fragment>
+      {this.state.user ? (
+          <Nav logged_in={this.state.user} updateCurrentUser={this.updateCurrentUser} />
+      ) : (
+        <div></div>
+      )
+      }
+
+    <div className="container-fluid">
+
+
 
 
     <Switch>
@@ -102,7 +112,6 @@ updateCurrentUser = (user) => {
       <Route exact path="/carer/:username/pa" render={routeProps => <PublicAddressContainer currentUser={this.state.user} />} />
       <Route exact path="/carer/:username/pa/:id" render={routeProps => <AnnouncementContainer currentUser={this.state.user} />} />
       <Route exact path="/carer/:username/edit" render={routeProps => <EditCarer currentUser={this.state.user} updateCurrentUser={this.updateCurrentUser} />} />
-      <Route exact path="/educator" component={EducatorProfile} />
       <Route exact path="/educator/:username/edit" render={routeProps => <EditEducator currentUser={this.state.user} updateCurrentUser={this.updateCurrentUser} />} />
       <Route exact path="/educator/:username/pa" render={routeProps => <PublicAddressContainer currentUser={this.state.user} />} />
       <Route exact path="/educator/:username/pa/:id" render={routeProps => <AnnouncementContainer currentUser={this.state.user} />} />
@@ -111,17 +120,10 @@ updateCurrentUser = (user) => {
 
       <Route component={FourOhFour} />
     </Switch>
-    </Fragment>
+  </div>
+  </Fragment>
     )
   }
 }
 
 export default withRouter(App);
-
-// 
-// {this.state.user ? (
-//     <Nav logged_in={this.state.user} updateCurrentUser={this.updateCurrentUser} />
-// ) : (
-//   <div></div>
-// )
-// }

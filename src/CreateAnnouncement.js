@@ -74,7 +74,15 @@ handleSubmit = (event) => {
   })
   .then(response => response.json())
   .then(message => {
-    alert("Your Announcement Has Been Posted!")
+    debugger
+    if (message.message === "messages sent") {
+      alert("Your Announcement Has Been Posted!")
+      this.setState({student_id: '', subject: '', body: ''})
+      this.props.history.push(`/${this.props.currentUser.user_type}/${this.props.currentUser.username}`)
+    } else {
+      alert("You have omitted mandatory information.  Please update and resubmit")
+    }
+
   })
 }
 

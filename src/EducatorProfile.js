@@ -28,7 +28,7 @@ class EducatorProfile extends Component {
 }
 
 educators = (data) => {
-  
+
   let educatorArray = []
   data.forEach(section => {
       section.educators.forEach(educator => {
@@ -46,14 +46,14 @@ educators = (data) => {
   render() {
 
     return (
-      <div>
-       <div className="container-fluid">
+
+    <div className="container-fluid px-4 py-4">
         <div className="row">
           <div className="col-lg-3">
            <ProfileCard userObj={this.props.currentUser} />
           </div>
           <div className="col-lg-9">
-           <h4>Schedule</h4>
+           <h4 className="mt-3 mb-3">Schedule</h4>
            <table className="table table-hover">
              <thead>
                <tr>
@@ -72,7 +72,7 @@ educators = (data) => {
                />)}
              </tbody>
            </table>
-           <h4>My Education Team</h4>
+           <h4 className="mt-3 mb-3">My Education Team</h4>
            <div className="card-columns">
 
            {this.state.educatorData.map(educatorObj => <EducatorCard
@@ -84,7 +84,6 @@ educators = (data) => {
           </div>
         </div>
       </div>
-    </div>
     )
   }
 }

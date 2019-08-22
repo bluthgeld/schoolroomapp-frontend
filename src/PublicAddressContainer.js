@@ -38,8 +38,9 @@ class PublicAddressContainer extends Component {
       }
 
     return (
-      <div>
-        <h2>Public Address System</h2>
+
+      <div className="container w-75 px-4 py-4">
+        <h2 className="mb-3 mt-3">Public Address System</h2>
            <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item">
               <a class="nav-link active" id="received-tab" data-toggle="tab" href="#received" role="tab" aria-controls="Received" aria-selected="false">Received</a>

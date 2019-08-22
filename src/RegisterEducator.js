@@ -60,17 +60,30 @@ handleSubmit = (event) => {
   })
   .then(response => response.json())
   .then(user => {
-    this.whatUp(user)
+    if (user.id) {
+      alert("Your Registration has been submitted.  You will be contacted by your school administrator.")
+      this.props.history.push('/educator_login')
 
-        //need to put if an ifelse statement here with popups
+    } else {
+      alert("You have made an error in your data entry.  Please correct and resubmit")
+    }
   })
-  this.props.history.push('/educator_login')
 }
 
 
 
 render() {
   return (
+
+
+    <div className="container w-50 mx-auto px-4 py-4">
+      <div className="w-25 mx-auto px-4 py-4">
+
+        <img src={require('./university.png')} style={{ width: "200px"}}/>
+
+      </div>
+
+      <h2 className="mx-auto mb-4 mt-4">Register as an Educator</h2>
           <form onSubmit={this.handleSubmit}>
             <div className="form-row">
               <div className="form-group col-md-6">
@@ -108,6 +121,8 @@ render() {
           </div>
           <button type="submit" className="btn btn-primary">Register Profile</button>
         </form>
+
+      </div>
       )
     }
   }

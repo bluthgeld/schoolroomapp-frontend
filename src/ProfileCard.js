@@ -4,7 +4,7 @@ import {Route, Link, withRouter} from 'react-router-dom'
 const ProfileCard = (props) => {
   return (
 
-  <div className="card" style={{ width: '20rem'}}>
+  <div className="card mb-1">
     <img src={props.userObj.picture} alt="Name Here" class="rounded mx-auto d-block rounded-circle" style={{width: '250px', height: '250px'}} />
     <div className="card-body">
       <h5 className="card-title">{props.userObj.first_name} {props.userObj.last_name}</h5>
@@ -21,4 +21,4 @@ const ProfileCard = (props) => {
   )
 }
 
-export default ProfileCard
+export default withRouter(ProfileCard)

@@ -9,7 +9,19 @@ const Nav = (props) => {
     props.history.push('/login')
   }
 
+  let handleOnLogoutEd = () => {
+    localStorage.removeItem("jwt")
+    props.updateCurrentUser(null)
+    props.history.push('/educator_login')
+  }
 
+  let button;
+
+  if (props.logged_in.user_type === 'carer') {
+  button = <button type="button" class="btn btn-primary" onClick={handleOnLogout} >Logout</button>
+   } else {
+  button = <button type="button" class="btn btn-primary" onClick={handleOnLogoutEd} >Logout</button>
+   }
 
   return (
 
@@ -23,13 +35,16 @@ const Nav = (props) => {
           <div className="collapse navbar-collapse" id="navbarColor01">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item">
-                <Link to={`/${props.logged_in.user_type}/${props.logged_in.username}`} className="nav-link active">Profile</Link>
+                <Link to={`/${props.logged_in.user_type}/${props.logged_in.username}`} activeClassName="nav-link active" className="nav-link">Profile</Link>
               </li>
               <li className="nav-item">
-                  <Link to={`/${props.logged_in.user_type}/${props.logged_in.username}/pa`} className="nav-link">Public Address</Link>
+                  <Link to={`/${props.logged_in.user_type}/${props.logged_in.username}/pa`} activeClassName="nav-link active" className="nav-link">Public Address</Link>
               </li>
               <li className="nav-item">
-                <button type="button" class="btn btn-primary" onClick={handleOnLogout} >Logout</button>
+
+                {button}
+
+
               </li>
             </ul>
           </div>

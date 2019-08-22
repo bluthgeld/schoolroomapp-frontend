@@ -32,8 +32,8 @@ class SectionContainer extends Component {
 
   render() {
     return (
-      <Fragment>
-      <div className="card w-50">
+      <div className="container-fluid px-4 py-4">
+      <div className="card w-50 mx-auto">
         <div className="card-body">
           <h5 className="card-title">{this.state.classroom.name}</h5>
           <p className="card-text">{this.state.classroom.description}</p>
@@ -41,21 +41,24 @@ class SectionContainer extends Component {
           <p className="card-text">Room {this.state.room.name} {this.state.room.room_number}</p>
         </div>
       </div>
-      <h3>Educators</h3>
+
+      <div className="w-75 mx-auto">
+      <h3 className="mt-4 mb-3">Educators</h3>
       <div className="card-columns">
       {this.state.educators.map(educatorObj => <EducatorCard
         educatorObj={educatorObj}
         key={educatorObj.first_name}
         />)}
       </div>
-      <h3>The Students</h3>
+      <h3 className="mt-4 mb-3">The Students</h3>
       <div className="card-deck">
       {this.state.students.map(studentObj => <StudentCard
         studentObj={studentObj}
         key={studentObj.id}
         />)}
       </div>
-      </Fragment>
+    </div>
+    </div>
 
     )
   }

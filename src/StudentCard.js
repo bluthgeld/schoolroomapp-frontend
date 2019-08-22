@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link, withRouter} from 'react-router-dom'
 
 const StudentCard = (props) => {
   return (
@@ -13,11 +14,11 @@ const StudentCard = (props) => {
           <li className="list-group-item">Student Number: {props.studentObj.student_number}</li>
         </ul>
         <div className="card-body">
-          <a href="#" className="card-link">See Schedule</a>
+          <Link to={`/student/${props.studentObj.id}`} className="card-link">Schedule</Link>
         </div>
         </div>
 
   )
 }
 
-export default StudentCard
+export default withRouter(StudentCard)

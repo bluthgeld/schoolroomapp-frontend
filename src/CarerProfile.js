@@ -70,30 +70,30 @@ class CarerProfile extends Component {
       carerData: carersArray,
       educatorData: educatorArray
     })
-    
+
   }
 
   render() {
     return (
-      <div className="container-fluid">
+      <div className="container-fluid px-4 py-4">
         <div className="row">
           <div className="col-lg-3">
             <ProfileCard userObj={this.props.currentUser}/>
           </div>
           <div className="col-lg-9">
-            <h4>Your Kids</h4>
+            <h4 className="mb-3">Your Kids</h4>
             {this.state.studentData.map(studentObj => <StudentCard
               studentObj={studentObj}
               key={studentObj.id}
               />)}
-            <h4>Their Educators</h4>
+            <h4 className="mt-3 mb-3">Their Educators</h4>
               <div className="card-columns">
               {this.state.educatorData.map(educatorObj => <EducatorCard
                 educatorObj={educatorObj}
                 key={educatorObj.first_name}
                 />)}
               </div>
-            <h4>Our Family</h4>
+            <h4 className="mt-3 mb-3">Our Family</h4>
               <div className="card-columns">
               {this.state.carerData.map(carerObj => <CarerCard
                 carerObj={carerObj}

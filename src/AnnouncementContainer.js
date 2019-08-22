@@ -70,8 +70,14 @@ class AnnouncementContainer extends Component {
       })
     })
     .then(response => response.json())
-    .then(message => this.getMessage(message))
-
+    .then(message => {
+      debugger
+      if (message.id) {
+        this.getMessage(message)
+      } else {
+        alert("You are missing mandatory information.  Please update and resubmit.")
+      }
+    })
   }
 
   getMessage = (message) => {
@@ -87,19 +93,26 @@ class AnnouncementContainer extends Component {
       replies: newReplies
     })
     alert("Your Reply Has Been Sent!")
+
+    this.setState({body: ''})
   }
 
 
   render() {
     return (
-      <div>
+      <div className="container w-75 px-4 py-4">
         <AnnouncementCard announcement={this.state.announcement} />
-        <h3>Replies</h3>
+
+        <div className="container mx-auto w-75">
+          <h3 className="mb-3 mt-5">Replies</h3>
+        </div>
+
+
         {this.state.replies.map(replyObj => <ReplyCard
           replyObj={replyObj}
           key={replyObj.id}
           />)}
-
+        <div className="container w-75 px-4 py-4">
         <form onSubmit={this.handleSubmit}>
           <div class="form-group">
             <label for="exampleFormControlTextarea1">Reply to this Announcement</label>
@@ -107,6 +120,7 @@ class AnnouncementContainer extends Component {
           </div>
           <button type="submit" class="btn btn-primary">Reply</button>
         </form>
+      </div>
       </div>
     )
   }

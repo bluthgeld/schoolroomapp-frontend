@@ -4,7 +4,7 @@ const CarerCard = (props) => {
     return (
 
         <div className="card">
-        <img src={props.carerObj.carer.picture} alt='{props.studentObj.first_name} {props.studentObj.last_name}' className="card-img-top" />
+        <img src={props.carerObj.carer.picture} alt='...' className="card-img-top" />
           <div className="card-body">
             <h5 className="card-title">{props.carerObj.carer.first_name} {props.carerObj.carer.last_name}</h5>
           </div>

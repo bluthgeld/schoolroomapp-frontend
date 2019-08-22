@@ -3,7 +3,7 @@ import React from 'react'
 const ReplyCard = (props) => {
   return (
 
-    <div class="card mb-3">
+    <div class="card mb-3 w-75 mx-auto">
       <div class="row no-gutters">
         <div class="col-md-4">
           <img src={props.replyObj.picture} class="card-img" style={{width: "200px"}}alt="..." />

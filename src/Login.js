@@ -57,9 +57,17 @@ class Login extends Component {
   render() {
     return (
 
+      <div className="container w-50 mx-auto px-4 py-4">
+      <div className="w-25 mx-auto px-4 py-4">
 
-      <div>
-      <div class="card w-25 mx-auto">
+        <img src={require('./university.png')} style={{ width: "200px"}}/>
+
+      </div>
+
+
+
+      <div class="card w-75 mx-auto mt-5">
+        <h2 className="mx-auto mb-3 mt-3">Login as a Parent/Carer</h2>
         <div class="card-body">
           <form onSubmit={this.handleLoginSubmit}>
             <div class="form-group">

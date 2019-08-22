@@ -72,6 +72,9 @@ handleSubmit = (event) => {
 
 render() {
   return (
+          <div className="container-fluid px-4 py-4">
+
+            <h2 className="mx-auto mb-4 mt-4">Update Your Profile</h2>
           <form onSubmit={this.handleSubmit}>
             <div className="form-row">
               <div className="form-group col-md-6">
@@ -79,7 +82,7 @@ render() {
                 <input type="text" className="form-control" name="username" value={this.state.username} onChange={this.handleChange} placeholder="Username" />
               </div>
               <div className="form-group col-md-6">
-                <label>Password</label>
+                <label>Change Password</label>
                 <input type="password" className="form-control" name="password" value={this.state.password} onChange={this.handleChange} placeholder="Password" />
               </div>
             </div>
@@ -109,6 +112,7 @@ render() {
           </div>
           <button type="submit" className="btn btn-primary">Register Profile</button>
         </form>
+      </div>
       )
     }
   }

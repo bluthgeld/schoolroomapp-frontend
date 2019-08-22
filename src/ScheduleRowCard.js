@@ -5,7 +5,7 @@ import {withRouter, Route, Link} from 'react-router-dom'
 const ScheduleRowCard = (props) => {
   return (
     <tr>
-      <th scope="col">{props.schedule.name}</th>
+      <th scope="col"><Link to={`/section/${props.schedule.id}`}>{props.schedule.name}</Link></th>
       <th scope="col">{props.schedule.room.name } {props.schedule.room.room_number}</th>
       <th scope="col">{props.schedule.description}</th>
       <th scope="col">{props.schedule.start_hour}</th>
